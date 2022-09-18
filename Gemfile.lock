@@ -40,6 +40,7 @@ GEM
       ruby2_keywords
     faraday-net_http (1.0.1)
     ffi (1.14.2)
+    ffi (1.14.2-x64-mingw32)
     hashie (3.6.0)
     i18n (1.8.8)
       concurrent-ruby (~> 1.0)
@@ -63,6 +64,8 @@ GEM
       ruby2_keywords (~> 0.0.1)
     nokogiri (1.11.1)
       mini_portile2 (~> 2.5.0)
+      racc (~> 1.4)
+    nokogiri (1.11.1-x64-mingw32)
       racc (~> 1.4)
     oauth2 (1.4.4)
       faraday (>= 0.8, < 2.0)
@@ -126,6 +129,7 @@ GEM
 
 PLATFORMS
   ruby
+  x64-mingw32
 
 DEPENDENCIES
   airbrake
@@ -133,6 +137,7 @@ DEPENDENCIES
   database_cleaner
   faker
   minitest
+  mongo (= 2.14.0)
   mongo_mapper (= 0.15.0)
   omniauth
   omniauth-mlh (= 0.4.1)

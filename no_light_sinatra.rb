@@ -70,43 +70,32 @@ class NoLightSinatra < Sinatra::Base
   end
 
   get '/:hackathon.zip' do
-    authorize do
-      @submissions = Submission.by_hackathon(params[:hackathon])
+    @submissions = Submission.by_hackathon(params[:hackathon])
 
-      if @submissions.count > 0
-        create_zip_folder(@submissions)
-        set_response_headers
-        download_zip_folder
-      else
-        erb :error, locals: {
-          title: "Error - No Submissions",
-          message: "We did not receive any submissions for your event (\"#{params[:hackathon]}\")."
-        }
-      end
+    if @submissions.count > 0
+      create_zip_folder(@submissions)
+      set_response_headers
+      download_zip_folder
+    else
+      erb :error, locals: {
+        title: "Error - No Submissions",
+        message: "We did not receive any submissions for your event (\"#{params[:hackathon]}\")."
+      }
     end
   end
 
   get '/:hackathon' do
-    authorize do
-      show_editor(DEFAULT_BRANDING)
-    end
+    show_editor(DEFAULT_BRANDING)
   end
 
   get '/:hackathon/:branding?' do
-    authorize do
-      show_editor(params[:branding])
-    end
+    show_editor(params[:branding])
   end
 
   private
 
   def authorize
-    if session[:user_id]
-      yield
-    else
-      session[:redirect] = request.fullpath
-      redirect '/auth/mlh'
-    end
+    yield
   end
 
   def show_editor(custom_branding)
@@ -135,7 +124,13 @@ class NoLightSinatra < Sinatra::Base
   end
 
   def create_zip_folder(array = [])
-    Zippy.create(create_tempfile.path) do |zip|
+    puts 'try'
+    Tempfile.new('no_light')
+    puts 'done'
+    filepath = create_tempfile.path
+    puts 'filepath'
+    Zippy.create(filepath) do |zip|
+      puts 'in'
       if zip && block_given?
         yield(zip)
       else

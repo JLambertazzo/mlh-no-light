@@ -2,6 +2,7 @@ ruby   '2.6.6'
 source 'https://rubygems.org'
 
 gem 'airbrake'
+gem 'mongo', '2.14.0'
 gem 'mongo_mapper', '0.15.0'
 gem 'sinatra'
 gem 'sinatra-contrib'
