@@ -6,7 +6,7 @@ Airbrake.configure do |c|
   c.logger.level = Logger::DEBUG
   c.environment = ENV['RACK_ENV']
   c.ignore_environments = %w(test)
-  c.blacklist_keys = [/password/i]
+  c.blocklist_keys = [/password/i]
 end
 
 class NoLightSinatra < Sinatra::Base
